@@ -2,6 +2,9 @@ import { Terminal } from '@/components/Terminal';
 
 export default function Home() {
     return (
-        <Terminal />
+        <main>
+            <h1 className="sr-only">Samuel Cedric - Software Engineer Portfolio</h1>
+            <Terminal />
+        </main>
     );
 }
