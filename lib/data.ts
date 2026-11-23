@@ -1,4 +1,4 @@
-import { NeofetchData, ExperienceData } from './types';
+import type { NeofetchData, ExperienceData } from './types.ts';
 
 export const neofetchData: NeofetchData = {
     username: 'guest',
@@ -109,7 +109,7 @@ export const aboutData = {
 	name: "Technology Founder & Software Engineer",
 	tagline: "Building technology, dreaming of a farm",
 	bio: "I’m Sam, a Computer Science undergraduate at Binus University and a technology founder working across fullstack engineering, AI systems and cloud infrastructure. I’m the co-founder and CTO of Nutrisi AI and founder and CTO of Pelajarin AI.\n\nI love building useful technology, but I’ve always wanted a farm, too. Sam’s Valley imagines both lives together: writing code, growing food and making time for a more traditional way of living.",
-	education: "B.Sc. in Computer Science, Binus University · 2024–Present.",
+	education: "B.Sc. in Computer Science, Binus University · 2024 to present.",
 };
 
 export const projectsData = [

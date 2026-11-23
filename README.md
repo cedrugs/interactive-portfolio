@@ -21,6 +21,8 @@ Samuel Cedric’s playable pixel-art portfolio, set in a farm and a furnished ho
 - **`src/phaser/lab/farm-world.ts`:** Farm layout, objects, and navigation bounds.
 - **`src/game/PortfolioPanel.tsx`:** Projects, background, stack, and contact dialog.
 - **`lib/data.ts`:** Shared portfolio information.
+- **`src/seo/`:** Page metadata, structured data, browser navigation, and asset versioning.
+- **`scripts/build-pages.mjs`:** Static pages, sitemap, favicons, and social preview generation.
 - **`public/assets/workshop-lab/`:** Farm, character, menu, and dialogue artwork.
 - **`public/assets/pixel-icons/`:** Pixelated technology icons and upstream licenses.
 - **`tests/`:** Navigation, collision, tour, dialogue, and save regression checks.
@@ -29,12 +31,13 @@ Samuel Cedric’s playable pixel-art portfolio, set in a farm and a furnished ho
 ## Routes Structure
 
 - **`/`:** Sam’s Valley, with direct portfolio access from the menu.
-- **`/legacy`:** Earlier Canvas 2D workshop.
+- **`/projects`, `/about`, `/stack`, `/contact`:** Shareable portfolio sections with generated HTML, individual metadata, and canonical URLs.
+- **`/legacy`:** Earlier Canvas 2D workshop, excluded from indexing.
 - **`/CV_Samuel_Cedric.pdf`:** Downloadable CV.
 - **`/healthz`:** Container health endpoint.
 - **`/version.json`:** Container build revision, generated during the Docker build.
 - **`/robots.txt`:** Crawler policy.
-- **`/sitemap.xml`:** Canonical homepage entry.
+- **`/sitemap.xml`:** Five canonical portfolio URLs, generated from the shared page definitions.
 
 ## Supported File Types
 
@@ -75,10 +78,13 @@ The production preview runs at `http://127.0.0.1:4173`.
 - [x] Projects, background, technology icons, contact details, and downloadable CV.
 - [x] Direct portfolio access without playing through the tour.
 - [x] Production container with health checks and build revision reporting.
+- [x] Production deployment on SGP-01 through Teleport and GitHub Actions.
+- [x] Per-section metadata, crawlable HTML, sitemap, icons, and social sharing preview.
+- [x] Matching indoor and outdoor character scale.
 
 ### In Progress
 
-- [ ] First production rollout on SGP-01 through Teleport and GitHub Actions.
+- [ ] Verify the SEO release through the production Cloudflare route.
 
 ## Mobile Responsive
 
@@ -107,5 +113,8 @@ The production preview runs at `http://127.0.0.1:4173`.
 - **Client IP:** Nginx trusts forwarded addresses only from Traefik at `10.10.1.3`. A Cloudflare client header is used for access logging only when the trusted forwarding chain identifies a Cloudflare peer.
 - **Rollback:** Re-run the previous release tag workflow. It builds and publishes that commit, then validates and activates its container through the same deployment path.
 - **Bootstrap:** After explicit access approval, copy `deploy/portfolio-shell`, `deploy/deploy-portfolio`, and `deploy/install.sh` to a root-owned directory on SGP-01, run `bash install.sh`, and apply `deploy/teleport.yml` with `tctl create`. This creates the restricted account and identity without starting the application or changing public routing. DNS must point `samuelcedric.com` to SGP-01 for the first release and certificate issuance.
-- **Static Hosting:** Publish `dist/` after `npm run build`. Configure `/legacy` to serve `index.html` if retaining the legacy route.
+- **Static Hosting:** Publish `dist/` after `npm run build`. Serve each section from its own generated directory index, redirect trailing slashes to the canonical path, and return a real `404` for unknown URLs.
+- **Caching:** HTML, CVs, sitemap, manifest, and revision checks use `no-store`. Content-versioned artwork and hashed bundles use one-year immutable caching. Icons and social previews revalidate after one day; errors are never cached. Cloudflare receives an explicit CDN cache policy.
+- **Security Headers:** Nginx supplies CSP, HSTS, frame protection, MIME sniffing protection, referrer and permissions policies, and cross-origin isolation policies on normal responses, redirects, and errors.
+- **HTTP Verification:** Run `node --experimental-strip-types scripts/verify-site.mjs http://127.0.0.1:3000` against the running container to check routes, metadata, icons, headers, cache validation, and missing resources.
 - **Local Docker:** Run `docker compose up --build`, then open `http://127.0.0.1:3000`. The local Compose configuration binds to loopback only and is not the SGP-01 deployment configuration.

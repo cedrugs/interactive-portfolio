@@ -1,3 +1,4 @@
+import { usePortfolioRoute } from '../seo/usePortfolioRoute';
 import { Joystick, RotateIcon } from './Controls';
 import { useEffect, useRef, useState, type PointerEvent } from 'react';
 import { createWorkshop, type WorkshopEngine } from './engine';
@@ -17,7 +18,7 @@ export function Workshop() {
 	const [attempt, setAttempt] = useState(0);
 	const [nearby, setNearby] = useState<Interaction | null>(null);
 	const [activity, setActivity] = useState<Activity | null>(null);
-	const [panel, setPanel] = useState<StationId | null>(null);
+	const [panel, setPanel] = usePortfolioRoute();
 	const [portrait, setPortrait] = useState(false);
 	const [fullscreenMessage, setFullscreenMessage] = useState('');
 	const returnFocus = useRef<HTMLElement | null>(null);
@@ -74,7 +75,7 @@ export function Workshop() {
 			setReady(true);
 		}).catch(() => { if (!cancelled) setError(true); });
 		return () => { cancelled = true; engine?.dispose(); engineRef.current = null; };
-	}, [attempt]);
+	}, [attempt, setPanel]);
 
 	useEffect(() => { engineRef.current?.setPaused(Boolean(panel) || portrait); }, [panel, portrait, ready]);
 
