@@ -1,3 +1,4 @@
+import { characterZoom } from './camera';
 import { FarmScene, type FarmCallbacks } from './FarmScene';
 import Phaser from 'phaser';
 import { Visitor } from './visitor';
@@ -170,7 +171,7 @@ export class WorkshopScene extends Phaser.Scene {
 	}
 
 	private resizeCamera(): void {
-		this.cameras.main.setZoom(this.scale.height < 500 ? 3 : 4).setRoundPixels(true).setFollowOffset(0, this.scale.height < 500 ? 14 : 26);
+		this.cameras.main.setZoom(characterZoom(this.scale.height)).setRoundPixels(true).setFollowOffset(0, this.scale.height < 500 ? 14 : 26);
 	}
 
 	private resetInput(): void {

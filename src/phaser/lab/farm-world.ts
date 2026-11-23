@@ -1,9 +1,10 @@
+import { characterZoom } from './camera.ts';
 import type { Point } from './world.ts';
 
 export const FARM = { x: -768, y: -512, width: 2048, height: 1536, tile: 16 };
 export const FARM_PLAYABLE = { x: -256, y: -160, width: 1024, height: 864 };
 export function farmCameraZoom(width: number, height: number): number {
-	return Math.max(height < 500 ? 2 : 3, Math.ceil(width / (FARM.width - 2)), Math.ceil(height / (FARM.height - 2)));
+	return Math.max(characterZoom(height), Math.ceil(width / (FARM.width - 2)), Math.ceil(height / (FARM.height - 2)));
 }
 export const FARM_SPAWN = { x: 272, y: 232 };
 export const FARM_DOOR = { x: 272, y: 168 };
