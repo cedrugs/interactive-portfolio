@@ -1,0 +1,48 @@
+name: Validate portfolio
+
+on:
+  workflow_call:
+  push:
+    branches-ignore: [staging]
+  pull_request:
+    branches: [staging, main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: validate-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - run: npm run lint
+      - run: npm test
+      - run: npm run build
+      - name: Build production container
+        env:
+          REVISION: ${{ github.sha }}
+        run: docker build --build-arg "APP_REVISION=$REVISION" --tag portfolio-check .
+      - name: Verify production container
+        env:
+          REVISION: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+          docker run -d --name portfolio-check -p 127.0.0.1:3000:3000 portfolio-check
+          trap 'docker logs portfolio-check; docker rm -f portfolio-check' EXIT
+          curl --fail --retry 15 --retry-delay 2 --retry-connrefused http://127.0.0.1:3000/healthz
+          test "$(curl -fsS http://127.0.0.1:3000/version.json | jq -r .revision)" = "$REVISION"
+          curl -fsS http://127.0.0.1:3000/ | grep -q '<title>.*Valley'
+          curl -fsS http://127.0.0.1:3000/legacy | grep -q '<title>.*Valley'
+          curl -fsSI http://127.0.0.1:3000/assets/workshop-lab/sams-valley-logo.png
+          curl -fsSI http://127.0.0.1:3000/CV_Samuel_Cedric.pdf
+          test "$(curl -s -o /dev/null -w '%{http_code}' http://127.0.0.1:3000/assets/missing.png)" = 404
