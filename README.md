@@ -78,7 +78,7 @@ The production preview runs at `http://127.0.0.1:4173`.
 
 ### In Progress
 
-- [ ] SGP-01 staging and production rollout through Teleport and GitHub Actions.
+- [ ] First production rollout on SGP-01 through Teleport and GitHub Actions.
 
 ## Mobile Responsive
 
@@ -95,11 +95,17 @@ The production preview runs at `http://127.0.0.1:4173`.
 
 ## Deployment
 
-- **Validation:** Branch pushes and pull requests to `staging` or `main` run lint, tests, TypeScript checking, a Vite build, and production-container smoke checks. Staging pushes run these checks through the publishing workflow.
+- **Validation:** Branch pushes and pull requests to `staging` or `main` run lint, tests, TypeScript checking, a Vite build, and production-container smoke checks. There is no staging deployment.
 - **Branch Flow:** Feature branches target `staging`. A separate promotion pull request moves tested work to `main`. Neither integration branch receives direct code pushes.
-- **Images:** Staging pushes publish `staging` and `sha-<commit>` image tags after validation. Bare numeric semantic-version tags publish the release version and `sha-<commit>` only when the tagged commit belongs to `main`. Tags with a `v` prefix are not accepted.
-- **Registry:** Images use the existing Harbor path `projects/interactive-portfolio`. GitHub Actions requires repository secrets `REGISTRY_URL`, `HARBOR_USERNAME`, and `HARBOR_PASSWORD`.
-- **Server Status:** Image publishing does not deploy the server yet. SGP-01 routing, environment ports, a scoped Teleport workload identity, and rollout verification still need configuration after authenticated server inspection.
-- **Revision:** The container exposes its `APP_REVISION` build argument at `/version.json`. The image digest is recorded in the publishing job summary.
+- **Production:** Only bare numeric semantic-version tags on commits reachable from `main` publish and deploy. The production URL is `https://samuelcedric.com`; `staging` is an integration branch only.
+- **Images:** Harbor stores the release tag and `sha-<commit>` under `projects/interactive-portfolio`. GitHub Actions requires the existing `REGISTRY_URL`, `HARBOR_USERNAME`, and `HARBOR_PASSWORD` repository secrets.
+- **Server:** SGP-01 uses the existing `proxy` Docker network and Traefik HTTPS entry point. Portfolio containers expose no host port and run as UID 101 with a read-only filesystem and dropped capabilities.
+- **Identity:** The `production` GitHub environment and `Deploy portfolio` workflow join Teleport using the `sams-valley-github-production` OIDC policy. The bot permits only `portfolio-deploy` on nodes labelled `env=ditto`, currently SGP-01; that account accepts only the validated deployment command.
+- **Transfer:** CI pulls the published digest, checks its image identity, and streams a compressed image through Teleport. SGP-01 stores no registry password. The server validates the image ID, source label, and commit revision before starting it.
+- **Traffic Switch:** The server starts the candidate, checks its revision, and atomically updates the Traefik route. It verifies Traefik reports the new service healthy and restores the prior route if that check fails. The previous container remains available; older containers are removed on the next successful rollout.
+- **Public Verification:** CI checks HTTPS, `/version.json`, `/healthz`, and the CV after activation. An external verification failure leaves the internally healthy container active and marks the run failed, so DNS or CDN issues remain visible.
+- **Client IP:** Nginx trusts forwarded addresses only from Traefik at `10.10.1.3`. A Cloudflare client header is used for access logging only when the trusted forwarding chain identifies a Cloudflare peer.
+- **Rollback:** Re-run the previous release tag workflow. It builds and publishes that commit, then validates and activates its container through the same deployment path.
+- **Bootstrap:** After explicit access approval, copy `deploy/portfolio-shell`, `deploy/deploy-portfolio`, and `deploy/install.sh` to a root-owned directory on SGP-01, run `bash install.sh`, and apply `deploy/teleport.yml` with `tctl create`. This creates the restricted account and identity without starting the application or changing public routing. DNS must point `samuelcedric.com` to SGP-01 for the first release and certificate issuance.
 - **Static Hosting:** Publish `dist/` after `npm run build`. Configure `/legacy` to serve `index.html` if retaining the legacy route.
 - **Local Docker:** Run `docker compose up --build`, then open `http://127.0.0.1:3000`. The local Compose configuration binds to loopback only and is not the SGP-01 deployment configuration.
