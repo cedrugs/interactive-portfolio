@@ -1,0 +1,111 @@
+{
+	"pixelGrid": 1,
+	"room": {
+		"width": 736,
+		"height": 480,
+		"tileSize": 16,
+		"camera": "integer zoom follows player; black outside room outlines"
+	},
+	"sampling": "nearest-neighbor",
+	"materials": {
+		"file": "materials.webp",
+		"width": 128,
+		"height": 128,
+		"columns": 2,
+		"rows": 2,
+		"cellSize": 64,
+		"tiles": [
+			"oak floor",
+			"dark oak floor",
+			"walnut wall paneling",
+			"walnut panel"
+		]
+	},
+	"furniture": {
+		"file": "furniture.webp",
+		"width": 384,
+		"height": 384,
+		"columns": 4,
+		"rows": 4,
+		"cellSize": 96,
+		"tiles": [
+			"project desk",
+			"bookshelf",
+			"server rack",
+			"mail table",
+			"fern",
+			"curtained window",
+			"office chair",
+			"wall lantern",
+			"rug",
+			"wall shelf",
+			"headphones",
+			"framed landscape",
+			"doorway",
+			"corkboard",
+			"plan basket",
+			"plant"
+		]
+	},
+	"character": {
+		"file": "character.webp",
+		"width": 192,
+		"height": 192,
+		"columns": 4,
+		"rows": 4,
+		"cellSize": 48,
+		"directions": [
+			"down",
+			"left",
+			"right",
+			"up"
+		],
+		"frames": [
+			"left step",
+			"idle",
+			"right step",
+			"idle"
+		]
+	},
+	"home": {
+		"file": "home.webp",
+		"width": 384,
+		"height": 384,
+		"columns": 4,
+		"rows": 4,
+		"cellSize": 96,
+		"tiles": [
+			"bed",
+			"nightstand",
+			"sofa",
+			"coffee table",
+			"kitchen counter",
+			"wardrobe",
+			"dining chair",
+			"dining table",
+			"bedroom rug",
+			"living room rug",
+			"railing",
+			"dresser",
+			"houseplant",
+			"fireplace",
+			"aquarium",
+			"botanical print"
+		]
+	},
+	"actions": {
+		"file": "actions.webp",
+		"width": 192,
+		"height": 192,
+		"columns": 4,
+		"rows": 4,
+		"cellSize": 48,
+		"states": [
+			"seated",
+			"sleeping",
+			"watching",
+			"cooking"
+		],
+		"framesPerState": 4
+	}
+}

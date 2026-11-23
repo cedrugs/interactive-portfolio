@@ -1,0 +1,38 @@
+kind: role
+version: v7
+metadata:
+  name: sams-valley-deployer
+spec:
+  options:
+    max_session_ttl: 30m
+    forward_agent: false
+    port_forwarding: false
+    ssh_file_copy: false
+  allow:
+    logins: [portfolio-deploy]
+    node_labels:
+      env: ditto
+---
+kind: bot
+version: v1
+metadata:
+  name: sams-valley-deploy
+spec:
+  roles: [sams-valley-deployer]
+  max_session_ttl: 3600s
+---
+kind: token
+version: v2
+metadata:
+  name: sams-valley-github-production
+spec:
+  roles: [Bot]
+  join_method: github
+  bot_name: sams-valley-deploy
+  github:
+    allow:
+      - repository: cedrugs/interactive-portfolio
+        workflow: Deploy portfolio
+        environment: production
+        ref_type: tag
+        sub: repo:cedrugs/interactive-portfolio:environment:production

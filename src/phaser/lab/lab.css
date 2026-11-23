@@ -1,0 +1,18 @@
+.phaser-lab { min-height: 0; }
+.phaser-canvas { position: absolute; inset: 0; overflow: hidden; touch-action: none; }
+.phaser-canvas canvas { display: block; image-rendering: pixelated; touch-action: none; }
+.lab-markers { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+.lab-markers .station-marker { pointer-events: auto; }
+.phaser-lab .game-controls { z-index: 2; }
+.phaser-lab .marker-diamond { animation: none; }
+@media (prefers-reduced-motion: reduce) {
+	.phaser-lab .station-marker { transition: none; }
+}
+
+@media (max-height: 500px) and (orientation: landscape) {
+	.phaser-lab .joystick { display: block; }
+	.phaser-lab .game-controls { justify-content: space-between; bottom: max(16px, env(safe-area-inset-bottom)); inset-inline: max(20px, env(safe-area-inset-left)) max(20px, env(safe-area-inset-right)); }
+	.phaser-lab .interact-button { visibility: visible; flex-direction: column; justify-content: center; gap: 5px; width: 86px; height: 78px; padding: 8px; font-size: 10px; background: #18251ed9; }
+	.phaser-lab .interact-button:disabled { opacity: .45; }
+	.phaser-lab .interact-key { width: 22px; height: 22px; font-size: 12px; }
+}

@@ -1,86 +1,111 @@
-# Interactive Portfolio
+# Sam’s Valley
+![React](https://img.shields.io/badge/React-19-149eca?style=flat) ![TypeScript](https://img.shields.io/badge/TypeScript-5-blue?style=flat) ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4-06b6d4?style=flat)
 
-An interactive terminal-themed portfolio built with Next.js, React, and Tailwind CSS.
+Samuel Cedric’s playable pixel-art portfolio, set in a farm and a furnished home.
 
 ## Tech Stack
 
-![Next.js](https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=next.js&logoColor=white)
-![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
-![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
-![Tailwind CSS](https://img.shields.io/badge/tailwind%20css-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
+- **UI:** React 19 and TypeScript 5.
+- **Game:** Phaser 3.90 with character movement, collisions, animals, and ambient animation.
+- **Build:** Vite 8 producing static assets in `dist/`.
+- **Typography:** Locally bundled Pixelify Sans and Cascadia Mono.
+- **Container:** Unprivileged Nginx serving static files on port 3000.
+- **Automation:** GitHub Actions for validation and Harbor image publishing.
 
-## Getting Started
+## Project Structure
 
-To get a local copy up and running, follow these simple steps.
+- **`src/App.tsx`:** Lazy-loaded game and legacy route with a studio splash.
+- **`src/phaser/lab/Lab.tsx`:** Main menu, visitor setup, saved progress, and scene transitions.
+- **`src/phaser/lab/FarmScene.ts`:** Outdoor scene and farm interactions.
+- **`src/phaser/lab/scene.ts`:** Interior scene, guided tour, and character interactions.
+- **`src/phaser/lab/farm-world.ts`:** Farm layout, objects, and navigation bounds.
+- **`src/game/PortfolioPanel.tsx`:** Projects, background, stack, and contact dialog.
+- **`lib/data.ts`:** Shared portfolio information.
+- **`public/assets/workshop-lab/`:** Farm, character, menu, and dialogue artwork.
+- **`public/assets/pixel-icons/`:** Pixelated technology icons and upstream licenses.
+- **`tests/`:** Navigation, collision, tour, dialogue, and save regression checks.
+- **`.github/workflows/`:** Validation and container publishing workflows.
 
-### Prerequisites
+## Routes Structure
 
-- Node.js (v22.x or later)
-- npm
+- **`/`:** Sam’s Valley, with direct portfolio access from the menu.
+- **`/legacy`:** Earlier Canvas 2D workshop.
+- **`/CV_Samuel_Cedric.pdf`:** Downloadable CV.
+- **`/healthz`:** Container health endpoint.
+- **`/version.json`:** Container build revision, generated during the Docker build.
+- **`/robots.txt`:** Crawler policy.
+- **`/sitemap.xml`:** Canonical homepage entry.
 
-### Installation
+## Supported File Types
 
-1. Clone the repo
+- **Artwork:** PNG and WebP textures, sprites, and interface assets.
+- **Metadata:** JSON atlas and glyph data.
+- **CV:** PDF.
 
-   ```sh
-   git clone https://github.com/Cedrugs/interactive-portfolio.git
-   ```
+## Setup Instructions
 
-2. Install NPM packages
+Use Node.js 22.12 or newer in the Node.js 22 release line. From the project directory:
 
-   ```sh
-   npm install
-   ```
+```sh
+npm ci
+npm run dev
+```
 
-3. Run the development server
+Open `http://127.0.0.1:5173`. The dev server uses a strict port.
 
-   ```sh
-   npm run dev
-   ```
+```sh
+npm test
+npm run typecheck
+npm run lint
+npm run build
+npm run preview
+```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The production preview runs at `http://127.0.0.1:4173`.
 
-## Available Commands
+## Key Features
 
-The portfolio supports the following commands:
+### Completed
 
-| Command      | Description                   |
-|--------------|-------------------------------|
-| `help`       | List all available commands   |
-| `about`      | Learn more about me           |
-| `experience` | View my work experience       |
-| `techstack`  | See my technical skills       |
-| `projects`   | Browse my portfolio projects  |
-| `contacts`   | Get my contact information    |
-| `cv`         | Download my CV/Resume         |
-| `clear`      | Clear the terminal screen     |
+- [x] Generated pixel artwork, studio splash, wooden menu title, and windblown petals.
+- [x] Visitor name and character selection with locally saved progress.
+- [x] Farm exploration, moving animals, readable sign interactions, and house entry and exit.
+- [x] Guided interior tour with Sam, dialogue, character collisions, and reactions.
+- [x] Keyboard and touch controls.
+- [x] Projects, background, technology icons, contact details, and downloadable CV.
+- [x] Direct portfolio access without playing through the tour.
+- [x] Production container with health checks and build revision reporting.
 
-## Docker Deployment
+### In Progress
 
-To deploy this application using Docker, follow these steps:
+- [ ] First production rollout on SGP-01 through Teleport and GitHub Actions.
 
-1. **Build the Docker image:**
+## Mobile Responsive
 
-    ```sh
-    docker build -t interactive-portfolio .
-    ```
+- **Input:** Touch controls supplement keyboard movement and interaction.
+- **Orientation:** The game offers fullscreen and orientation handling where supported by the browser.
+- **Validation:** Automated game logic and container smoke checks run in CI. Real-device phone testing remains separate.
 
-2. **Run the Docker container:**
+## Design System
 
-    ```sh
-    docker run -p 3000:3000 interactive-portfolio
-    ```
+- **Artwork:** Original generated pixel textures and sprites with nearest-neighbor rendering.
+- **Interface:** Wooden frames, parchment panels, Pixelify Sans, and pixelated icons.
+- **World:** Farm and interior layouts are assembled from reusable assets in code.
+- **Motion:** Ambient farm animation and menu particles complement character movement.
 
-Alternatively, you can use Docker Compose:
+## Deployment
 
-1. **Build and run the services:**
-
-    ```sh
-    docker-compose up
-    ```
-
-The application will be available at [http://localhost:3000](http://localhost:3000).
-
-## License
-
-Distributed under the MIT License. See `LICENSE` for more information.
+- **Validation:** Branch pushes and pull requests to `staging` or `main` run lint, tests, TypeScript checking, a Vite build, and production-container smoke checks. There is no staging deployment.
+- **Branch Flow:** Feature branches target `staging`. A separate promotion pull request moves tested work to `main`. Neither integration branch receives direct code pushes.
+- **Production:** Only bare numeric semantic-version tags on commits reachable from `main` publish and deploy. The production URL is `https://samuelcedric.com`; `staging` is an integration branch only.
+- **Images:** Harbor stores the release tag and `sha-<commit>` under `projects/interactive-portfolio`. GitHub Actions requires the existing `REGISTRY_URL`, `HARBOR_USERNAME`, and `HARBOR_PASSWORD` repository secrets.
+- **Server:** SGP-01 uses the existing `proxy` Docker network and Traefik HTTPS entry point. Portfolio containers expose no host port and run as UID 101 with a read-only filesystem and dropped capabilities.
+- **Identity:** The `production` GitHub environment and `Deploy portfolio` workflow join Teleport using the `sams-valley-github-production` OIDC policy. The bot permits only `portfolio-deploy` on nodes labelled `env=ditto`, currently SGP-01; that account accepts only the validated deployment command.
+- **Transfer:** CI pulls the published digest, checks its image identity, and streams a compressed image through Teleport. SGP-01 stores no registry password. The server validates the image ID, source label, and commit revision before starting it.
+- **Traffic Switch:** The server starts the candidate, checks its revision, and atomically updates the Traefik route. It verifies Traefik reports the new service healthy and restores the prior route if that check fails. The previous container remains available; older containers are removed on the next successful rollout.
+- **Public Verification:** CI checks HTTPS, `/version.json`, `/healthz`, and the CV after activation. An external verification failure leaves the internally healthy container active and marks the run failed, so DNS or CDN issues remain visible.
+- **Client IP:** Nginx trusts forwarded addresses only from Traefik at `10.10.1.3`. A Cloudflare client header is used for access logging only when the trusted forwarding chain identifies a Cloudflare peer.
+- **Rollback:** Re-run the previous release tag workflow. It builds and publishes that commit, then validates and activates its container through the same deployment path.
+- **Bootstrap:** After explicit access approval, copy `deploy/portfolio-shell`, `deploy/deploy-portfolio`, and `deploy/install.sh` to a root-owned directory on SGP-01, run `bash install.sh`, and apply `deploy/teleport.yml` with `tctl create`. This creates the restricted account and identity without starting the application or changing public routing. DNS must point `samuelcedric.com` to SGP-01 for the first release and certificate issuance.
+- **Static Hosting:** Publish `dist/` after `npm run build`. Configure `/legacy` to serve `index.html` if retaining the legacy route.
+- **Local Docker:** Run `docker compose up --build`, then open `http://127.0.0.1:3000`. The local Compose configuration binds to loopback only and is not the SGP-01 deployment configuration.
