@@ -46,7 +46,7 @@ jobs:
           curl --fail --retry 15 --retry-delay 2 --retry-all-errors --connect-timeout 2 --max-time 5 http://127.0.0.1:3000/healthz
           test "$(curl -fsS http://127.0.0.1:3000/version.json | jq -r .revision)" = "$REVISION"
           curl -fsS http://127.0.0.1:3000/ | grep -q '<title>.*Valley'
-          curl -fsS http://127.0.0.1:3000/legacy | grep -q '<title>.*Valley'
+          node --experimental-strip-types scripts/verify-site.mjs http://127.0.0.1:3000
           curl -fsSI http://127.0.0.1:3000/assets/workshop-lab/sams-valley-logo.png
           curl -fsSI http://127.0.0.1:3000/CV_Samuel_Cedric.pdf
           test "$(curl -s -o /dev/null -w '%{http_code}' http://127.0.0.1:3000/assets/missing.png)" = 404
