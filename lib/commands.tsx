@@ -103,14 +103,14 @@ export const commands: Record<string, CommandHandler> = {
                         <div className="text-terminal-prompt text-sm">
                             Tech: {project.tech.join(', ')}
                         </div>
-                        <a
+                        {project.link && <a
                             href={project.link}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="text-terminal-success hover:underline text-sm inline-block"
                         >
-                            View Project →
-                        </a>
+                            View project →
+                        </a>}
                     </div>
                 ))}
             </div>

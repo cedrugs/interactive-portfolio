@@ -12,131 +12,231 @@ export const neofetchData: NeofetchData = {
 };
 
 export const experienceData: ExperienceData = {
-    'PT DEWAWEB': [
-        {
-            position: 'Junior Software Engineer',
-            period: 'Jul 2025 - Present',
-            description: 'Skills: Next.js · Docker · Gitlab · Git · FastAPI · Go (Programming Language) · OpenAI API · Deepseek API · Gemini API · S3 · Single Sign-On (SSO) · Text-to-Image Generation · PostgreSQL · Prisma ORM',
-        }
-    ],
-    'UREEKA BINUS': [
-        {
-            position: 'Member',
-            period: 'Mar 2025 - Present',
-            description: '',
-        }
-    ],
-    'Binus Student Learning Community': [
-        {
-            position: 'IT Development Activist',
-            period: 'Dec 2024 - Present',
-            description: 'Skills: Figma · JavaScript · HTML · Cascading Style Sheets (CSS)',
-        },
-        {
-            position: 'Member',
-            period: 'Sep 2024 - Jan 2025',
-            description: 'Created a mock website based on a provided Figma design using barebone HTML and CSS. This project aimed to demonstrate my web development skills and secure a position within the BSLC Activist selection.',
-        }
-    ],
-    'Bina Nusantara Computer Club': [
-        {
-            position: 'Research And Development Activist',
-            period: 'May 2025 - Oct 2025',
-            description: '',
-        },
-        {
-            position: 'Learning and Training Activist',
-            period: 'Oct 2024 - Jul 2025',
-            description: 'Active member of BNCC 36, contributing to initiatives that promote technology education and community engagement. Participated in organizing events, workshops, and collaborations to inspire innovation and skill development among members. Passionate about fostering a culture of learning and growth in the tech community.',
-        },
-        {
-            position: 'Member',
-            period: 'Sep 2024 - Jul 2025',
-            description: 'Participated in the Frontend Learning and Training (LnT) class, gaining hands-on experience in React.js, Tailwind CSS, JavaScript, Express.js, and Git. This involvement enhanced my frontend development skills and fostered collaboration within the tech community.',
-        }
-    ],
-    'DewaVPS': [
-        {
-            position: 'Product/IT Support',
-            period: 'Apr 2025 - Jul 2025',
-            description: '',
-        }
-    ],
-    'Fiverr Gigs': [
-        {
-            position: 'Full Stack Developer',
-            period: 'Sep 2023 - Jul 2025',
-            description: 'Proficient in HTML, CSS, JavaScript, and React, with expertise in deploying applications using Nginx, Apache, and similar tools. Experienced in backend technologies like Node.js, Express, and database systems such as MySQL and MongoDB. Skilled in version control with Git/GitHub, API integration, responsive design, and ensuring cross-browser compatibility. Familiar with containerization tools like Docker and CI/CD pipelines for streamlined deployments.',
-        },
-        {
-            position: 'Back End Developer',
-            period: 'May 2021 - Sep 2023',
-            description: 'Proficient in discord.py, hikari, and other Python libraries, with experience developing 4+ advanced Discord bots. Specialized in creating bots with complex functionality, including moderation, custom commands, APIs, and user engagement features. Skilled in optimizing performance and delivering seamless user experiences.',
-        }
-    ],
-    'Bina Nusantara IT Division': [
-        {
-            position: 'Training IT Bootcamp Advance',
-            period: 'Nov 2024 - Feb 2025',
-            description: 'Developed a package tracking website using ReactJS for the frontend and .NET ASP for the backend, with MySQL database integration. Emphasized functionality and user experience while collaborating in an agile team environment.',
-        },
-        {
-            position: 'Training IT Bootcamp',
-            period: 'Oct 2024 - Nov 2024',
-            description: 'Developed a car rental website using .NET MVC with SQL for order management and tracking. Designed the frontend with HTML/CSS (no frameworks) and implemented efficient database integration. Showcased end-to-end development skills and a focus on functionality and user experience.',
-        }
-    ]
+	"Nutrisi AI": [{
+		position: "Co-Founder & Chief Technical Officer",
+		period: "Jun 2026 - Present",
+		description: "Owns end-to-end mobile, backend and billing engineering; develops and fine-tunes AI models; architects Kubernetes infrastructure.",
+	}],
+	"Pelajarin AI": [{
+		position: "Founder & Chief Technical Officer",
+		period: "Jul 2025 - Present",
+		description: "Scaled the learning platform to 1.2 million users, 10,000 daily active users and 20,000 peak concurrent users. Builds AI notes, flashcards, quizzes and a study assistant.",
+	}],
+	"PT DEWAWEB": [{
+		position: "Junior Software Engineer",
+		period: "May 2025 - Aug 2026",
+		description: "Developed two production internal fullstack applications, documented DewaVPS APIs and contributed technical newsletter content.",
+	}],
+	"Fiverr": [{
+		position: "Freelance Fullstack Developer",
+		period: "Aug 2020 - 2024",
+		description: "Delivered web projects, workflow automation and Discord bots with API integrations.",
+	}],
+	"Bina Nusantara Computer Club": [{
+		position: "Research and Development Manager",
+		period: "May 2025 - Present",
+		description: "Modernizes legacy PHP deployments with Docker, microservices, CI/CD and centralized logging.",
+	}],
+	"BINUS Student Learning Community": [{
+		position: "IT Development Activist",
+		period: "Dec 2024 - Present",
+		description: "Contributed frontend development to the Study2Challenge Hackathon website.",
+	}],
+	"Ureeka BINUS": [{
+		position: "Member",
+		period: "Oct 2024 - Present",
+		description: "",
+	}],
+};
+
+export const portfolioStack = {
+	"Languages": [
+		"TypeScript",
+		"JavaScript",
+		"Python",
+		"Go",
+		"PHP",
+		"SQL"
+	],
+	"Web & mobile": [
+		"React",
+		"Next.js",
+		"React Native",
+		"Expo",
+		"Vite",
+		"Tailwind CSS"
+	],
+	"Servers & APIs": [
+		"Node.js",
+		"Bun",
+		"Fastify",
+		"FastAPI",
+		"Hono",
+		"Laravel"
+	],
+	"Data": [
+		"PostgreSQL",
+		"Redis",
+		"Drizzle",
+		"Prisma",
+		"SQLAlchemy",
+		"MariaDB"
+	],
+	"AI & machine learning": [
+		"PyTorch",
+		"Scikit-learn",
+		"Gradio"
+	],
+	"Infrastructure": [
+		"Docker",
+		"Kubernetes",
+		"Linux",
+		"GitHub Actions",
+		"GitLab CI/CD",
+		"Traefik",
+		"Nginx"
+	]
 };
 
 export const techStackData = {
-    languages: ['C', 'C#', 'C++', 'HTML5', 'JavaScript', 'Markdown', 'PHP', 'Python', 'TypeScript'],
-    frontend: ['Next JS', 'React', 'Vite', 'Vue.js'],
-    backend: ['.Net', 'Django', 'Express.js', 'Filament', 'Flask', 'Laravel', 'MongoDB', 'MySQL', 'Postgres', 'Redis', 'SQLite'],
-    tools: ['Amazon S3', 'LeetCode', 'Alibaba Cloud', 'AWS', 'Azure', 'DigitalOcean', 'Google Cloud', 'Vultr', 'Visual Studio Code', 'Matplotlib', 'NumPy', 'Pandas', 'PyTorch', 'Microsoft Office', 'iOS', 'macOS', 'Arch Linux', 'Windows', 'Git', 'GitHub', 'Docker', 'Crowdin', 'FFmpeg', 'Notion'],
+	languages: portfolioStack.Languages,
+	frontend: portfolioStack['Web & mobile'],
+	backend: [...portfolioStack['Servers & APIs'], ...portfolioStack.Data],
+	tools: [...portfolioStack['AI & machine learning'], ...portfolioStack.Infrastructure],
 };
 
 export const aboutData = {
-    name: 'Full-Stack Developer',
-    tagline: 'Building useful technologies',
-    bio: `I’m a 20-year-old fullstack developer and second-year Computer Science student at BINUS University. 
-Right now I'm leveling up my skills in backend dev, cloud infrastructure, and a dash of machine learning on the side. 
-My current job is Junior Software Engineer at Dewaweb.
-
-What I do:
-
-- Build fullstack apps using Next.js, React, PostgreSQL, and Prisma
-- Automate workflows with CI/CD pipelines, and containerize projects with Docker
-- Handle deployment like a champ — from VPS to DevOps best practices
-- Develop tools like YouTube downloaders, GitHub streak injectors, and other useful things!
-- Craft AI-powered bots and scripts using Python, OpenAI, and other wild APIs
-`,
+	name: "Technology Founder & Software Engineer",
+	tagline: "Building technology, dreaming of a farm",
+	bio: "I’m Sam, a Computer Science undergraduate at Binus University and a technology founder working across fullstack engineering, AI systems and cloud infrastructure. I’m the co-founder and CTO of Nutrisi AI and founder and CTO of Pelajarin AI.\n\nI love building useful technology, but I’ve always wanted a farm, too. Sam’s Valley imagines both lives together: writing code, growing food and making time for a more traditional way of living.",
+	education: "B.Sc. in Computer Science, Binus University · 2024–Present.",
 };
 
 export const projectsData = [
-    {
-        name: 'pelajarin.ai',
-        description: 'AI driven online learning platform for students in Indonesia (K-12 - University level)',
-        tech: ['Next.js', 'Xendit', 'PostgreSQL', 'Tailwind', 'Docker', 'Prisma', 'Redis', 'Pgvector', 'Generative AI'],
-        link: 'https://pelajarin.ai',
-    },
-    {
-        name: 'streakinator',
-        description: 'A simple, interactive Go utility that creates backdated, empty Git commits to populate your GitHub contribution graph.',
-        tech: ['Go'],
-        link: 'https://github.com/Cedrugs/streakinator',
-    },
-    {
-        name: 'GiziTrack',
-        description: 'User-friendly application for GiziTrack webapp, offering intuitive navigation, real-time notifications, and an interactive dashboard for tracking meal delivery.',
-        tech: ['Laravel', 'MariaDB', 'TypeScript', 'Docker', 'React', 'Vite', 'TailwindCSS', 'Nginx'],
-        link: 'https://github.com/Cedrugs/gizitrack',
-    },
-    {
-        name: 'Chatguard',
-        description: 'Toxic language detection using a fine‑tuned XLM‑RoBERTa',
-        tech: ['Scikit-learn', 'Pytorch', 'FastAPI', 'Docker', 'Gradio'],
-        link: 'https://github.com/Cedrugs/Chatguard-API',
-    },
+	{
+		"name": "Nutrisi AI",
+		"icon": "salad",
+		"description": "An AI nutrition companion that turns meal photos into calorie and macro estimates. Built across a mobile app, backend, billing, and an operator dashboard.",
+		"tech": [
+			"React Native",
+			"Expo",
+			"TypeScript",
+			"Python",
+			"FastAPI",
+			"PostgreSQL",
+			"Kubernetes"
+		],
+		"link": "https://nutrisi.ai"
+	},
+	{
+		"name": "pelajarin.ai",
+		"icon": "book-open",
+		"description": "An AI learning platform with 1.2 million users. Turns study materials into notes, flashcards, and quizzes, with a study assistant and mobile learning experience.",
+		"tech": [
+			"React",
+			"Expo",
+			"Fastify",
+			"Drizzle",
+			"PostgreSQL",
+			"Redis",
+			"Python"
+		],
+		"link": "https://pelajarin.ai"
+	},
+	{
+		"name": "RelayOn",
+		"icon": "network",
+		"description": "A unified AI gateway and marketplace for text, document, and audio services. Includes provider routing, API key management, usage tracking, and a management dashboard.",
+		"tech": [
+			"TypeScript",
+			"Hono",
+			"React",
+			"Drizzle",
+			"PostgreSQL",
+			"Redis"
+		],
+		"link": "https://relayon.app"
+	},
+	{
+		"name": "Bitora",
+		"icon": "terminal",
+		"description": "A gamified C programming platform with interactive lessons, an in-browser coding terminal, XP, and leaderboards. Code runs in isolated Docker containers through a Go backend.",
+		"tech": [
+			"Go",
+			"React",
+			"TypeScript",
+			"Vite",
+			"PostgreSQL",
+			"Docker"
+		],
+		"link": ""
+	},
+	{
+		"name": "samjourn.al",
+		"icon": "notebook-pen",
+		"description": "A quiet personal journal for everyday reflections and quiet time entries, with rich text editing and optional audio attachments.",
+		"tech": [
+			"React",
+			"TypeScript",
+			"Fastify",
+			"Bun",
+			"Drizzle",
+			"PostgreSQL"
+		],
+		"link": "https://samjourn.al"
+	},
+	{
+		"name": "Tensorcode",
+		"icon": "blocks",
+		"description": "A bilingual software studio website with prerendered pages, motion, and a companion API for contact and newsletter forms.",
+		"tech": [
+			"React",
+			"TypeScript",
+			"Vite",
+			"Tailwind CSS",
+			"Hono",
+			"Drizzle"
+		],
+		"link": "https://tensorcode.co.id"
+	},
+	{
+		"name": "GiziTrack",
+		"icon": "utensils",
+		"description": "A meal delivery dashboard with tracking, notifications, and a React interface backed by Laravel.",
+		"tech": [
+			"Laravel",
+			"MariaDB",
+			"TypeScript",
+			"Docker",
+			"React",
+			"Vite",
+			"Tailwind CSS",
+			"Nginx"
+		],
+		"link": "https://github.com/Cedrugs/gizitrack"
+	},
+	{
+		"name": "Chatguard",
+		"icon": "shield-check",
+		"description": "Toxic language detection using a fine-tuned XLM-RoBERTa model, exposed through a FastAPI service and Gradio interface.",
+		"tech": [
+			"Scikit-learn",
+			"PyTorch",
+			"FastAPI",
+			"Docker",
+			"Gradio"
+		],
+		"link": "https://github.com/Cedrugs/Chatguard-API"
+	},
+	{
+		"name": "streakinator",
+		"icon": "git-commit-horizontal",
+		"description": "An interactive Go command-line utility for creating backdated, empty Git commits.",
+		"tech": [
+			"Go"
+		],
+		"link": "https://github.com/Cedrugs/streakinator"
+	}
 ];
 
 export const contactData = {
