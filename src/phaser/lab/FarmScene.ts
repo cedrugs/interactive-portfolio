@@ -102,7 +102,7 @@ export class FarmScene extends Phaser.Scene {
 	private resize(): void {
 		const camera = this.cameras.main;
 		camera.setZoom(farmCameraZoom(this.scale.width, this.scale.height)).setBounds(FARM.x, FARM.y, FARM.width, FARM.height);
-		if (this.actor) camera.startFollow(this.actor, true, 1, 1, 0, 84);
+		if (this.actor) camera.startFollow(this.actor, true, 1, 1, 0, Math.min(84, this.scale.height / (camera.zoom * 3)));
 	}
 	private resetInput(): void { this.joystick = { x: 0, y: 0 }; this.input.keyboard?.resetKeys(); }
 	setSuspended(value: boolean): void {
