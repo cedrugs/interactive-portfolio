@@ -1,0 +1,132 @@
+{
+  "processing": "Rasterized on a 16px grid (technology) or 24px grid (project), alpha thresholded and palette quantized; nearest-neighbor display.",
+  "icons": {
+    "TypeScript": "devicon:typescript",
+    "JavaScript": "devicon:javascript",
+    "Python": "devicon:python",
+    "Go": "devicon:go",
+    "PHP": "devicon:php",
+    "SQL": "lucide:database",
+    "React": "devicon:react",
+    "Next.js": "devicon:nextjs",
+    "React Native": "devicon:react",
+    "Expo": "devicon:expo",
+    "Vite": "devicon:vitejs",
+    "Tailwind CSS": "devicon:tailwindcss",
+    "Node.js": "devicon:nodejs",
+    "Bun": "devicon:bun",
+    "Fastify": "devicon:fastify",
+    "FastAPI": "devicon:fastapi",
+    "Hono": "simple-icons:hono",
+    "Laravel": "devicon:laravel",
+    "PostgreSQL": "devicon:postgresql",
+    "Redis": "devicon:redis",
+    "Drizzle": "devicon:drizzle",
+    "Prisma": "devicon:prisma",
+    "SQLAlchemy": "devicon:sqlalchemy",
+    "MariaDB": "devicon:mariadb",
+    "PyTorch": "devicon:pytorch",
+    "Scikit-learn": "devicon:scikitlearn",
+    "Gradio": "simple-icons:gradio",
+    "Docker": "devicon:docker",
+    "Kubernetes": "devicon:kubernetes",
+    "Linux": "devicon:linux",
+    "GitHub Actions": "devicon:githubactions",
+    "GitLab CI/CD": "devicon:gitlab",
+    "Traefik": "devicon:traefikproxy",
+    "Nginx": "devicon:nginx",
+    "salad": "lucide:salad",
+    "book-open": "lucide:book-open",
+    "network": "lucide:network",
+    "terminal": "lucide:terminal",
+    "notebook-pen": "lucide:notebook-pen",
+    "blocks": "lucide:blocks",
+    "utensils": "lucide:utensils",
+    "shield-check": "lucide:shield-check",
+    "git-commit-horizontal": "lucide:git-commit-horizontal"
+  },
+  "libraries": [
+    {
+      "prefix": "devicon",
+      "name": "Devicon",
+      "total": 1104,
+      "author": {
+        "name": "konpa",
+        "url": "https://github.com/devicons/devicon/tree/master"
+      },
+      "license": {
+        "title": "MIT",
+        "spdx": "MIT",
+        "url": "https://github.com/devicons/devicon/blob/master/LICENSE"
+      },
+      "samples": [
+        "windows8",
+        "tensorflow",
+        "logstash",
+        "stackblitz",
+        "fsharp",
+        "vite"
+      ],
+      "height": 32,
+      "displayHeight": 16,
+      "category": "Programming",
+      "palette": true
+    },
+    {
+      "prefix": "lucide",
+      "name": "Lucide",
+      "total": 2020,
+      "author": {
+        "name": "Lucide Contributors",
+        "url": "https://github.com/lucide-icons/lucide"
+      },
+      "license": {
+        "title": "ISC",
+        "spdx": "ISC",
+        "url": "https://github.com/lucide-icons/lucide/blob/main/LICENSE"
+      },
+      "samples": [
+        "circle-check",
+        "award",
+        "house",
+        "check",
+        "mountain",
+        "chevron-up"
+      ],
+      "height": 24,
+      "category": "UI 24px",
+      "tags": [
+        "Precise Shapes",
+        "Has Padding",
+        "Uses Stroke"
+      ],
+      "palette": false
+    },
+    {
+      "prefix": "simple-icons",
+      "name": "Simple Icons",
+      "total": 3467,
+      "version": "16.36.0",
+      "author": {
+        "name": "Simple Icons Collaborators",
+        "url": "https://github.com/simple-icons/simple-icons"
+      },
+      "license": {
+        "title": "CC0 1.0",
+        "spdx": "CC0-1.0",
+        "url": "https://github.com/simple-icons/simple-icons/blob/develop/LICENSE.md"
+      },
+      "samples": [
+        "wise",
+        "framer",
+        "vuetify",
+        "unsplash",
+        "stackblitz",
+        "mitsubishi"
+      ],
+      "height": 24,
+      "category": "Logos",
+      "palette": false
+    }
+  ]
+}

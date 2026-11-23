@@ -1,0 +1,22 @@
+.dialogue-box {
+	position: absolute;
+	width: min(960px, calc(100vw - 24px), 180svh);
+	aspect-ratio: 3 / 1;
+	left: 50%;
+	bottom: max(12px, env(safe-area-inset-bottom));
+	transform: translateX(-50%);
+	container-type: inline-size;
+	pointer-events: auto;
+	color: #4d291c;
+	isolation: isolate;
+}
+.dialogue-art { position: absolute; inset: 0; width: 100%; height: 100%; image-rendering: pixelated; pointer-events: none; }
+.dialogue-copy { position: absolute; left: 6.5%; top: 18%; width: 59%; height: 56%; margin: 0; font-size: 2.6cqw; line-height: 1.4; font-weight: 500; overflow-wrap: anywhere; }
+.dialogue-portrait { position: absolute; left: 76%; top: 13%; width: 19.5%; height: 57%; object-fit: contain; object-position: center bottom; image-rendering: pixelated; }
+.dialogue-name { position: absolute; left: 75%; top: 75%; width: 21%; height: 14%; display: grid; place-items: center; line-height: 1; text-align: center; font-size: 2.7cqw; font-weight: 600; }
+.dialogue-advance { position: absolute; inset: 0; width: 100%; border: 0; padding: 0; background: transparent; cursor: pointer; color: inherit; }
+.dialogue-advance:focus-visible { outline: 2px solid #d8a353; outline-offset: -12px; }
+.dialogue-cue { position: absolute; right: 33.5%; bottom: 16%; font-size: 3.3cqw; line-height: 1; animation: dialogue-nudge .8s steps(2, end) infinite; }
+.dialogue-link { position: absolute; left: 6.5%; bottom: 16%; width: max-content; max-width: 59%; text-align: left; border: 0; padding: 4px 0; background: transparent; color: #704023; font: inherit; font-size: 2cqw; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+@keyframes dialogue-nudge { 50% { transform: translateY(3px); } }
+@media (prefers-reduced-motion: reduce) { .dialogue-cue { animation: none; } }

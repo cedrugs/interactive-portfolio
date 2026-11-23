@@ -1,86 +1,99 @@
-# Interactive Portfolio
+# The Workshop
+![React](https://img.shields.io/badge/React-19-149eca?style=flat) ![TypeScript](https://img.shields.io/badge/TypeScript-5-blue?style=flat) ![Canvas](https://img.shields.io/badge/Canvas-2D-56734c?style=flat)
 
-An interactive terminal-themed portfolio built with Next.js, React, and Tailwind CSS.
+Samuel Cedric’s playable pixel-art portfolio, assembled from modular texture and sprite atlases.
 
 ## Tech Stack
 
-![Next.js](https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=next.js&logoColor=white)
-![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
-![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
-![Tailwind CSS](https://img.shields.io/badge/tailwind%20css-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
+- **UI:** React 19 and TypeScript.
+- **Game:** Canvas 2D, requestAnimationFrame, grid pathfinding, and collision detection.
+- **Build:** Vite producing static assets in `dist/`.
+- **Typography:** Locally bundled Cascadia Mono.
+- **Container:** Unprivileged Nginx serving static files on port 3000.
 
-## Getting Started
+## Project Structure
 
-To get a local copy up and running, follow these simple steps.
+- **`src/game/Workshop.tsx`:** Game interface, touch joystick, orientation prompt, and fullscreen controls.
+- **`src/game/engine.ts`:** Tilemap rendering, movement, sprite animation, and interactions.
+- **`src/game/room.ts`:** Furniture placement and interactive stations.
+- **`src/game/navigation.ts`:** Walkable bounds, collision shapes, and pathfinding.
+- **`src/game/PortfolioPanel.tsx`:** Accessible portfolio dialog.
+- **`src/game/world.css`:** Desktop and landscape-phone layouts.
+- **`lib/data.ts`:** Shared portfolio information.
+- **`public/assets/workshop/`:** GPT Image assets, atlas manifest, and generation prompts.
+- **`tests/navigation.test.mjs`:** Pathfinding and movement regression checks.
+- **`components/`, `hooks/`, `src/styles.css`:** Retained previous terminal implementation, not loaded by the workshop entry point.
 
-### Prerequisites
+## Routes Structure
 
-- Node.js (v22.x or later)
-- npm
+- **`/`:** Playable workshop with direct access to the portfolio.
+- **`/CV_Samuel_Cedric.pdf`:** Existing CV.
+- **`/robots.txt`:** Crawler policy.
+- **`/sitemap.xml`:** Canonical homepage entry.
 
-### Installation
+## Supported File Types
 
-1. Clone the repo
+- **Textures:** Lossless WebP with transparency where appropriate.
+- **Atlas Manifest:** JSON with exact dimensions, frame order, and tile names.
+- **CV:** PDF.
 
-   ```sh
-   git clone https://github.com/Cedrugs/interactive-portfolio.git
-   ```
+## Setup Instructions
 
-2. Install NPM packages
+Use Node.js 22.12 or newer supported by Vite. From the project directory:
 
-   ```sh
-   npm install
-   ```
+```sh
+npm ci
+npm run dev
+```
 
-3. Run the development server
+Open `http://127.0.0.1:5173`. The dev server uses a strict port.
 
-   ```sh
-   npm run dev
-   ```
+```sh
+npm run test
+npm run typecheck
+npm run lint
+npm run build
+npm run preview
+```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The production preview runs at `http://127.0.0.1:4173`.
 
-## Available Commands
+## Key Features
 
-The portfolio supports the following commands:
+### Completed
 
-| Command      | Description                   |
-|--------------|-------------------------------|
-| `help`       | List all available commands   |
-| `about`      | Learn more about me           |
-| `experience` | View my work experience       |
-| `techstack`  | See my technical skills       |
-| `projects`   | Browse my portfolio projects  |
-| `contacts`   | Get my contact information    |
-| `cv`         | Download my CV/Resume         |
-| `clear`      | Clear the terminal screen     |
+- [x] A workshop assembled in code from reusable tiles and separate object sprites.
+- [x] Furnished bedroom, living nook, and kitchen connected by walkable doorways.
+- [x] Four-direction animated character with WASD and arrow-key movement.
+- [x] Tap-to-walk pathfinding, touch joystick, and furniture collisions.
+- [x] Project desk, bookshelf, server rack, and letter-tray interactions.
+- [x] Sitting, sleeping, aquarium watching, and cooking with animated poses; movement, E, or Escape ends an activity.
+- [x] Keyboard-accessible portfolio dialog with projects, about, stack, and contact sections.
+- [x] Direct portfolio access without gameplay.
+- [x] Landscape phone layout with a portrait rotate prompt.
+- [x] Optional fullscreen and orientation locking when supported by the browser.
+- [x] Reduced-motion support and paused rendering when a dialog is open or the page is hidden.
 
-## Docker Deployment
+## Mobile Responsive
 
-To deploy this application using Docker, follow these steps:
+- **Orientation:** Coarse-pointer portrait devices see a rotate prompt. Direct portfolio access remains available in portrait.
+- **Fullscreen:** Requires a user gesture. Orientation locking is best effort; browsers without support require physical rotation.
+- **Input:** Joystick, tap-to-walk, and large interaction targets.
+- **Rendering:** A 736 by 480 world with connected compact rooms, black space outside their outlines, and a camera that follows the player at fixed integer zoom.
+- **Assets:** Five lossless WebP atlases provide materials, workshop furniture, home furniture, walking frames, and activity poses.
+- **Validation:** Navigation tests and desktop browser interactions are verified. Real-device phone testing remains required.
 
-1. **Build the Docker image:**
+## Design System
 
-    ```sh
-    docker build -t interactive-portfolio .
-    ```
+- **Reference:** Cozy top-down life-sim interiors, with original assets generated by the built-in GPT Image tool.
+- **Grid:** Shared 16 by 16 world tiles define rooms, doorways, furniture occupancy, collision bounds, and navigation. Main circulation lanes are two tiles wide. 64 by 64 source material tiles repeat across 32 by 32 world pixels, 96 by 96 furniture cells, and 48 by 48 character frames. Sprites preserve their original aspect ratio and are rasterized onto the same logical pixel grid.
+- **Sampling:** Generated atlases normalized with nearest-neighbor sampling and stored as lossless WebP.
+- **Palette:** Warm walnut floors and walls, sage upholstery, teal screens, and warm parchment interface accents.
+- **Source:** The room is defined in code; no full-room background illustration is used.
+- **Prompts:** Exact prompts are recorded in `public/assets/workshop/prompts.json`.
 
-2. **Run the Docker container:**
+## Deployment
 
-    ```sh
-    docker run -p 3000:3000 interactive-portfolio
-    ```
-
-Alternatively, you can use Docker Compose:
-
-1. **Build and run the services:**
-
-    ```sh
-    docker-compose up
-    ```
-
-The application will be available at [http://localhost:3000](http://localhost:3000).
-
-## License
-
-Distributed under the MIT License. See `LICENSE` for more information.
+- **Static Hosting:** Publish `dist/` after `npm run build`.
+- **Docker:** Run `docker compose up --build` to expose the static site on port 3000.
+- **Current Scope:** Local prototype; no deployment or Git push is required to preview it.

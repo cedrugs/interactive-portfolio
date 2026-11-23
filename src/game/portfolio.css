@@ -1,0 +1,85 @@
+.phaser-lab .portfolio-panel {
+	width: min(880px, calc(100vw - 32px));
+	height: min(650px, calc(100dvh - 40px));
+	margin: auto;
+	padding: 8px;
+	border: 16px solid transparent;
+	border-image: url('/assets/workshop-lab/portfolio-frame.png') 64 fill / 16px / 0 stretch;
+	border-radius: 0;
+	background: #ffdb9c;
+	color: #593016;
+	box-shadow: 0 8px 0 #23170b66;
+	image-rendering: pixelated;
+}
+.portfolio-panel::backdrop { background: #111b2080; }
+.phaser-lab .portfolio-panel .panel-top { padding: 0 8px 6px 14px; min-height: 36px; }
+.phaser-lab .portfolio-panel .panel-kicker { font-size: 16px; color: #855027; letter-spacing: 1px; }
+.phaser-lab .portfolio-panel .icon-button { min-width: 36px; min-height: 36px; padding: 0; font-size: 24px; color: #903923; }
+.phaser-lab .portfolio-panel .panel-tabs { gap: 8px; padding: 0 12px 12px; border-bottom: 3px solid #bd7a39; }
+.phaser-lab .portfolio-panel .panel-tabs button { display: flex; align-items: center; justify-content: center; gap: 8px; min-height: 54px; padding: 4px 8px; font-size: 20px; color: #633819; }
+.phaser-lab .portfolio-panel .panel-tabs img { width: 28px; height: 28px; object-fit: contain; }
+.phaser-lab .portfolio-panel .panel-tabs button[aria-current='page'] { color: #8e351d; filter: brightness(1.1); }
+.phaser-lab .portfolio-panel .panel-content { padding: 22px 24px; scrollbar-color: #ad652c #f4c783; }
+.phaser-lab .portfolio-panel .panel-heading { margin-bottom: 18px; }
+.phaser-lab .portfolio-panel h2 { font-size: 30px; letter-spacing: 0; line-height: 1.2; margin-bottom: 8px; font-weight: 600; }
+.phaser-lab .portfolio-panel h3 { font-size: 24px; letter-spacing: 0; }
+.phaser-lab .portfolio-panel h4 { font-size: 21px; letter-spacing: 0; }
+.phaser-lab .portfolio-panel p, .phaser-lab .portfolio-panel a, .phaser-lab .portfolio-panel li, .phaser-lab .portfolio-panel span { font-size: 18px; letter-spacing: 0; color: #603b22; }
+.phaser-lab .portfolio-panel p { line-height: 1.5; }
+.phaser-lab .portfolio-panel .project-number { font-size: 15px; letter-spacing: 1px; color: #9b4928; }
+.phaser-lab .portfolio-panel .project-page, .phaser-lab .portfolio-panel .experience-note, .phaser-lab .portfolio-panel .stack-page section { border-color: #c88c4d; padding: 20px 0; }
+.phaser-lab .portfolio-panel .tech-tags li { border-color: #be8647; background: #f3c88a; font-size: 16px; padding: 3px 8px; }
+.phaser-lab .portfolio-panel .project-link { color: #863d1f; border-color: #a26430; }
+.phaser-lab .portfolio-panel .project-link:hover { color: #4c2814; }
+.phaser-lab .portfolio-panel .experience-note h4, .phaser-lab .portfolio-panel .stack-page h3 { color: #8b4525; }
+.phaser-lab .portfolio-panel .experience-note span { font-size: 16px; color: #875a34; }
+.phaser-lab .portfolio-panel .experience-description { margin-top: 8px; }
+.phaser-lab .portfolio-panel .panel-footer { padding: 10px 12px 2px; border-top: 3px solid #bd7a39; }
+.phaser-lab .portfolio-panel .panel-footer button { font-size: 18px; color: #633819; padding: 4px 12px; }
+.panel-profile { display: flex; align-items: center; gap: 12px; }
+.panel-profile > img { width: 52px; height: 52px; object-fit: contain; }
+.panel-profile small { display: block; font-size: 14px; margin-top: 3px; }
+.phaser-lab .portfolio-panel button:focus-visible, .phaser-lab .portfolio-panel a:focus-visible { outline: 3px solid #4f6a37; outline-offset: 2px; }
+.phaser-lab .portfolio-panel .panel-tabs button:focus-visible { outline: none; text-decoration: underline; text-underline-offset: 4px; filter: brightness(1.12); }
+@media (max-height: 500px) {
+	.phaser-lab .portfolio-panel { height: calc(100dvh - 16px); border-width: 12px; border-image-width: 12px; padding: 4px; }
+	.phaser-lab .portfolio-panel .panel-top { min-height: 28px; padding-bottom: 2px; }
+	.phaser-lab .portfolio-panel .panel-tabs { padding-bottom: 6px; }
+	.phaser-lab .portfolio-panel .panel-tabs button { min-height: 40px; font-size: 18px; }
+	.phaser-lab .portfolio-panel .panel-content { padding: 14px 20px; }
+	.phaser-lab .portfolio-panel .panel-footer { padding-top: 6px; }
+	.panel-profile > img { width: 36px; height: 36px; }
+	.panel-profile small { display: none; }
+}
+@media (max-width: 520px) {
+	.phaser-lab .portfolio-panel { width: calc(100vw - 16px); border-width: 12px; border-image-width: 12px; padding: 4px; }
+	.phaser-lab .portfolio-panel .panel-content { padding: 16px 10px; }
+	.phaser-lab .portfolio-panel .panel-tabs { gap: 5px; padding-inline: 2px; }
+	.phaser-lab .portfolio-panel .panel-tabs button { font-size: 16px; gap: 2px; padding: 2px; flex-direction: column; }
+	.phaser-lab .portfolio-panel .panel-tabs img { width: 24px; height: 24px; }
+	.phaser-lab .portfolio-panel .panel-footer { padding-inline: 2px; }
+	.panel-profile { gap: 6px; }
+	.panel-profile small { display: none; }
+	.phaser-lab .portfolio-panel .panel-footer button { font-size: 16px; padding-inline: 8px; }
+}
+@media (max-height: 500px) {
+	.phaser-lab .portfolio-panel .panel-top { min-height: 26px; }
+	.phaser-lab .portfolio-panel .panel-kicker { font-size: 14px; }
+	.phaser-lab .portfolio-panel .icon-button { min-width: 28px; min-height: 28px; height: 28px; border-width: 5px; border-image-width: 5px; font-size: 18px; line-height: 1; }
+	.phaser-lab .portfolio-panel .panel-tabs button { min-height: 38px; border-width: 6px; border-image-width: 6px; padding-block: 0; line-height: 1; }
+	.phaser-lab .portfolio-panel .panel-tabs img { width: 24px; height: 24px; }
+	.phaser-lab .portfolio-panel .panel-footer button { min-height: 38px; border-width: 6px; border-image-width: 6px; padding-block: 0; line-height: 1; }
+	.phaser-lab .portfolio-panel .panel-content { padding-block: 12px; }
+	.phaser-lab .portfolio-panel h2 { font-size: 24px; }
+	.phaser-lab .portfolio-panel .panel-heading { margin-bottom: 12px; }
+	.phaser-lab .portfolio-panel p { font-size: 16px; }
+	.phaser-lab .portfolio-panel .project-page { padding-block: 12px; }
+}
+
+.phaser-lab .portfolio-panel .pixel-library-icon { width: 32px; height: 32px; object-fit: contain; image-rendering: pixelated; flex-shrink: 0; }
+.phaser-lab .portfolio-panel .project-title { display: flex; align-items: center; gap: 12px; }
+.phaser-lab .portfolio-panel .project-title .pixel-library-icon { width: 48px; height: 48px; }
+.phaser-lab .portfolio-panel .tech-tags li, .phaser-lab .portfolio-panel .stack-page li { display: flex; align-items: center; gap: 8px; }
+.phaser-lab .portfolio-panel .stack-page li { min-height: 38px; }
+.phaser-lab .portfolio-panel .tech-tags li { padding: 5px 8px; }
+.phaser-lab .portfolio-panel .tech-tags .pixel-library-icon { width: 32px; height: 32px; }
