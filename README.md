@@ -1,45 +1,50 @@
-# The Workshop
-![React](https://img.shields.io/badge/React-19-149eca?style=flat) ![TypeScript](https://img.shields.io/badge/TypeScript-5-blue?style=flat) ![Canvas](https://img.shields.io/badge/Canvas-2D-56734c?style=flat)
+# Sam’s Valley
+![React](https://img.shields.io/badge/React-19-149eca?style=flat) ![TypeScript](https://img.shields.io/badge/TypeScript-5-blue?style=flat) ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4-06b6d4?style=flat)
 
-Samuel Cedric’s playable pixel-art portfolio, assembled from modular texture and sprite atlases.
+Samuel Cedric’s playable pixel-art portfolio, set in a farm and a furnished home.
 
 ## Tech Stack
 
-- **UI:** React 19 and TypeScript.
-- **Game:** Canvas 2D, requestAnimationFrame, grid pathfinding, and collision detection.
-- **Build:** Vite producing static assets in `dist/`.
-- **Typography:** Locally bundled Cascadia Mono.
+- **UI:** React 19 and TypeScript 5.
+- **Game:** Phaser 3.90 with character movement, collisions, animals, and ambient animation.
+- **Build:** Vite 8 producing static assets in `dist/`.
+- **Typography:** Locally bundled Pixelify Sans and Cascadia Mono.
 - **Container:** Unprivileged Nginx serving static files on port 3000.
+- **Automation:** GitHub Actions for validation and Harbor image publishing.
 
 ## Project Structure
 
-- **`src/game/Workshop.tsx`:** Game interface, touch joystick, orientation prompt, and fullscreen controls.
-- **`src/game/engine.ts`:** Tilemap rendering, movement, sprite animation, and interactions.
-- **`src/game/room.ts`:** Furniture placement and interactive stations.
-- **`src/game/navigation.ts`:** Walkable bounds, collision shapes, and pathfinding.
-- **`src/game/PortfolioPanel.tsx`:** Accessible portfolio dialog.
-- **`src/game/world.css`:** Desktop and landscape-phone layouts.
+- **`src/App.tsx`:** Lazy-loaded game and legacy route with a studio splash.
+- **`src/phaser/lab/Lab.tsx`:** Main menu, visitor setup, saved progress, and scene transitions.
+- **`src/phaser/lab/FarmScene.ts`:** Outdoor scene and farm interactions.
+- **`src/phaser/lab/scene.ts`:** Interior scene, guided tour, and character interactions.
+- **`src/phaser/lab/farm-world.ts`:** Farm layout, objects, and navigation bounds.
+- **`src/game/PortfolioPanel.tsx`:** Projects, background, stack, and contact dialog.
 - **`lib/data.ts`:** Shared portfolio information.
-- **`public/assets/workshop/`:** GPT Image assets, atlas manifest, and generation prompts.
-- **`tests/navigation.test.mjs`:** Pathfinding and movement regression checks.
-- **`components/`, `hooks/`, `src/styles.css`:** Retained previous terminal implementation, not loaded by the workshop entry point.
+- **`public/assets/workshop-lab/`:** Farm, character, menu, and dialogue artwork.
+- **`public/assets/pixel-icons/`:** Pixelated technology icons and upstream licenses.
+- **`tests/`:** Navigation, collision, tour, dialogue, and save regression checks.
+- **`.github/workflows/`:** Validation and container publishing workflows.
 
 ## Routes Structure
 
-- **`/`:** Playable workshop with direct access to the portfolio.
-- **`/CV_Samuel_Cedric.pdf`:** Existing CV.
+- **`/`:** Sam’s Valley, with direct portfolio access from the menu.
+- **`/legacy`:** Earlier Canvas 2D workshop.
+- **`/CV_Samuel_Cedric.pdf`:** Downloadable CV.
+- **`/healthz`:** Container health endpoint.
+- **`/version.json`:** Container build revision, generated during the Docker build.
 - **`/robots.txt`:** Crawler policy.
 - **`/sitemap.xml`:** Canonical homepage entry.
 
 ## Supported File Types
 
-- **Textures:** Lossless WebP with transparency where appropriate.
-- **Atlas Manifest:** JSON with exact dimensions, frame order, and tile names.
+- **Artwork:** PNG and WebP textures, sprites, and interface assets.
+- **Metadata:** JSON atlas and glyph data.
 - **CV:** PDF.
 
 ## Setup Instructions
 
-Use Node.js 22.12 or newer supported by Vite. From the project directory:
+Use Node.js 22.12 or newer in the Node.js 22 release line. From the project directory:
 
 ```sh
 npm ci
@@ -49,7 +54,7 @@ npm run dev
 Open `http://127.0.0.1:5173`. The dev server uses a strict port.
 
 ```sh
-npm run test
+npm test
 npm run typecheck
 npm run lint
 npm run build
@@ -62,38 +67,39 @@ The production preview runs at `http://127.0.0.1:4173`.
 
 ### Completed
 
-- [x] A workshop assembled in code from reusable tiles and separate object sprites.
-- [x] Furnished bedroom, living nook, and kitchen connected by walkable doorways.
-- [x] Four-direction animated character with WASD and arrow-key movement.
-- [x] Tap-to-walk pathfinding, touch joystick, and furniture collisions.
-- [x] Project desk, bookshelf, server rack, and letter-tray interactions.
-- [x] Sitting, sleeping, aquarium watching, and cooking with animated poses; movement, E, or Escape ends an activity.
-- [x] Keyboard-accessible portfolio dialog with projects, about, stack, and contact sections.
-- [x] Direct portfolio access without gameplay.
-- [x] Landscape phone layout with a portrait rotate prompt.
-- [x] Optional fullscreen and orientation locking when supported by the browser.
-- [x] Reduced-motion support and paused rendering when a dialog is open or the page is hidden.
+- [x] Generated pixel artwork, studio splash, wooden menu title, and windblown petals.
+- [x] Visitor name and character selection with locally saved progress.
+- [x] Farm exploration, moving animals, readable sign interactions, and house entry and exit.
+- [x] Guided interior tour with Sam, dialogue, character collisions, and reactions.
+- [x] Keyboard and touch controls.
+- [x] Projects, background, technology icons, contact details, and downloadable CV.
+- [x] Direct portfolio access without playing through the tour.
+- [x] Production container with health checks and build revision reporting.
+
+### In Progress
+
+- [ ] SGP-01 staging and production rollout through Teleport and GitHub Actions.
 
 ## Mobile Responsive
 
-- **Orientation:** Coarse-pointer portrait devices see a rotate prompt. Direct portfolio access remains available in portrait.
-- **Fullscreen:** Requires a user gesture. Orientation locking is best effort; browsers without support require physical rotation.
-- **Input:** Joystick, tap-to-walk, and large interaction targets.
-- **Rendering:** A 736 by 480 world with connected compact rooms, black space outside their outlines, and a camera that follows the player at fixed integer zoom.
-- **Assets:** Five lossless WebP atlases provide materials, workshop furniture, home furniture, walking frames, and activity poses.
-- **Validation:** Navigation tests and desktop browser interactions are verified. Real-device phone testing remains required.
+- **Input:** Touch controls supplement keyboard movement and interaction.
+- **Orientation:** The game offers fullscreen and orientation handling where supported by the browser.
+- **Validation:** Automated game logic and container smoke checks run in CI. Real-device phone testing remains separate.
 
 ## Design System
 
-- **Reference:** Cozy top-down life-sim interiors, with original assets generated by the built-in GPT Image tool.
-- **Grid:** Shared 16 by 16 world tiles define rooms, doorways, furniture occupancy, collision bounds, and navigation. Main circulation lanes are two tiles wide. 64 by 64 source material tiles repeat across 32 by 32 world pixels, 96 by 96 furniture cells, and 48 by 48 character frames. Sprites preserve their original aspect ratio and are rasterized onto the same logical pixel grid.
-- **Sampling:** Generated atlases normalized with nearest-neighbor sampling and stored as lossless WebP.
-- **Palette:** Warm walnut floors and walls, sage upholstery, teal screens, and warm parchment interface accents.
-- **Source:** The room is defined in code; no full-room background illustration is used.
-- **Prompts:** Exact prompts are recorded in `public/assets/workshop/prompts.json`.
+- **Artwork:** Original generated pixel textures and sprites with nearest-neighbor rendering.
+- **Interface:** Wooden frames, parchment panels, Pixelify Sans, and pixelated icons.
+- **World:** Farm and interior layouts are assembled from reusable assets in code.
+- **Motion:** Ambient farm animation and menu particles complement character movement.
 
 ## Deployment
 
-- **Static Hosting:** Publish `dist/` after `npm run build`.
-- **Docker:** Run `docker compose up --build` to expose the static site on port 3000.
-- **Current Scope:** Local prototype; no deployment or Git push is required to preview it.
+- **Validation:** Branch pushes and pull requests to `staging` or `main` run lint, tests, TypeScript checking, a Vite build, and production-container smoke checks. Staging pushes run these checks through the publishing workflow.
+- **Branch Flow:** Feature branches target `staging`. A separate promotion pull request moves tested work to `main`. Neither integration branch receives direct code pushes.
+- **Images:** Staging pushes publish `staging` and `sha-<commit>` image tags after validation. Bare numeric semantic-version tags publish the release version and `sha-<commit>` only when the tagged commit belongs to `main`. Tags with a `v` prefix are not accepted.
+- **Registry:** Images use the existing Harbor path `projects/interactive-portfolio`. GitHub Actions requires repository secrets `REGISTRY_URL`, `HARBOR_USERNAME`, and `HARBOR_PASSWORD`.
+- **Server Status:** Image publishing does not deploy the server yet. SGP-01 routing, environment ports, a scoped Teleport workload identity, and rollout verification still need configuration after authenticated server inspection.
+- **Revision:** The container exposes its `APP_REVISION` build argument at `/version.json`. The image digest is recorded in the publishing job summary.
+- **Static Hosting:** Publish `dist/` after `npm run build`. Configure `/legacy` to serve `index.html` if retaining the legacy route.
+- **Local Docker:** Run `docker compose up --build`, then open `http://127.0.0.1:3000`. The local Compose configuration binds to loopback only and is not the SGP-01 deployment configuration.
