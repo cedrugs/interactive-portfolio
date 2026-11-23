@@ -39,7 +39,7 @@ jobs:
           set -euo pipefail
           docker run -d --name portfolio-check -p 127.0.0.1:3000:3000 portfolio-check
           trap 'docker logs portfolio-check; docker rm -f portfolio-check' EXIT
-          curl --fail --retry 15 --retry-delay 2 --retry-connrefused http://127.0.0.1:3000/healthz
+          curl --fail --retry 15 --retry-delay 2 --retry-all-errors --connect-timeout 2 --max-time 5 http://127.0.0.1:3000/healthz
           test "$(curl -fsS http://127.0.0.1:3000/version.json | jq -r .revision)" = "$REVISION"
           curl -fsS http://127.0.0.1:3000/ | grep -q '<title>.*Valley'
           curl -fsS http://127.0.0.1:3000/legacy | grep -q '<title>.*Valley'
