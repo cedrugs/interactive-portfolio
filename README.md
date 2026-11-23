@@ -10,7 +10,7 @@ Samuel Cedric’s playable pixel-art portfolio, set in a farm and a furnished ho
 - **Build:** Vite 8 producing static assets in `dist/`.
 - **Typography:** Locally bundled Pixelify Sans and Cascadia Mono.
 - **Container:** Unprivileged Nginx serving static files on port 3000.
-- **Automation:** GitHub Actions for validation and Harbor image publishing.
+- **Automation:** GitHub Actions for validation and GitHub Container Registry image publishing.
 
 ## Project Structure
 
@@ -98,7 +98,7 @@ The production preview runs at `http://127.0.0.1:4173`.
 - **Validation:** Branch pushes and pull requests to `staging` or `main` run lint, tests, TypeScript checking, a Vite build, and production-container smoke checks. There is no staging deployment.
 - **Branch Flow:** Feature branches target `staging`. A separate promotion pull request moves tested work to `main`. Neither integration branch receives direct code pushes.
 - **Production:** Only bare numeric semantic-version tags on commits reachable from `main` publish and deploy. The production URL is `https://samuelcedric.com`; `staging` is an integration branch only.
-- **Images:** Harbor stores the release tag and `sha-<commit>` under `projects/interactive-portfolio`. GitHub Actions requires the existing `REGISTRY_URL`, `HARBOR_USERNAME`, and `HARBOR_PASSWORD` repository secrets.
+- **Images:** GitHub Container Registry stores the release tag and `sha-<commit>` under `ghcr.io/cedrugs/interactive-portfolio`. Publishing uses the workflow’s built-in `GITHUB_TOKEN` with `packages: write`; deployment uses `packages: read`. No separate registry credentials are required.
 - **Server:** SGP-01 uses the existing `proxy` Docker network and Traefik HTTPS entry point. Portfolio containers expose no host port and run as UID 101 with a read-only filesystem and dropped capabilities.
 - **Identity:** The `production` GitHub environment and `Deploy portfolio` workflow join Teleport using the `sams-valley-github-production` OIDC policy. The bot permits only `portfolio-deploy` on nodes labelled `env=ditto`, currently SGP-01; that account accepts only the validated deployment command.
 - **Transfer:** CI pulls the published digest, checks its image identity, and streams a compressed image through Teleport. SGP-01 stores no registry password. The server validates the image ID, source label, and commit revision before starting it.
