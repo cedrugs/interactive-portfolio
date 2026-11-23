@@ -152,7 +152,7 @@
 .phaser-lab .tour-toolbar button,
 .phaser-lab .character-choices button,
 .phaser-lab .pixel-button,
-.phaser-lab .portfolio-panel .panel-tabs button,
+.phaser-lab .portfolio-panel .panel-tabs a,
 .phaser-lab .portfolio-panel .panel-footer button,
 .phaser-lab .portfolio-panel .icon-button {
 	border: 10px solid transparent;

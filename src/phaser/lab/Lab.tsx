@@ -1,3 +1,4 @@
+import { usePortfolioRoute } from '../../seo/usePortfolioRoute';
 import { StudioSplash } from '../../game/StudioSplash';
 import { OpeningStory } from './OpeningStory';
 import { FarmSignPanel } from './FarmSignPanel';
@@ -6,7 +7,6 @@ import type { FarmSign } from './farm-world';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { Joystick, RotateIcon } from '../../game/Controls';
 import { PortfolioPanel } from '../../game/PortfolioPanel';
-import type { StationId } from '../../game/room';
 import { actions, type ActionId } from './world';
 import type { LabState, startGame } from './scene';
 import './lab.css';
@@ -26,7 +26,7 @@ export function Lab() {
 	const finishBoot = useCallback(() => setBooted(true), []);
 	const showSplash = !booted || !ready;
 	const [error, setError] = useState('');
-	const [panel, setPanel] = useState<StationId | null>(null);
+	const [panel, setPanel] = usePortfolioRoute();
 	const [portrait, setPortrait] = useState(false);
 	const [attempt, setAttempt] = useState(0);
 	const panelFocus = useRef<HTMLElement | null>(null);
@@ -122,7 +122,7 @@ export function Lab() {
 			engine.current = instance;
 		}).catch(() => { if (!disposed) setError('The game could not start. Please reload.'); });
 		return () => { disposed = true; instance?.game.destroy(true); engine.current = null; };
-	}, [attempt]);
+	}, [attempt, setPanel]);
 
 	useEffect(() => {
 		pauseRef.current = paused;
